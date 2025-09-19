@@ -5,12 +5,16 @@ date: "2025-09-19"
 output: github_document
 ---
 
+## Problem 1
 ```{r}
-# load the tidyverse and moderndive library
+# Load the tidyverse and moderndive library
 library(tidyverse)
 library(moderndive)
 
 # Load the 'early_january_weather' dataset
 data("early_january_weather")
+
+# View the dataset
+view(early_january_weather)
 ```
 
