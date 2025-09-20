@@ -48,3 +48,39 @@ scatter_temp_time
 ggsave("scatter_temp_time.png", scatter_temp_time, width = 7, height = 4)
 ```
 The scatterplot shows hourly temperature change over time, with points showing different humidity levels. Temperature goes up and down during the day, following a daily cycle. Temperatures are generally cooler when humidity is higher, and warmer when humidity is lower.
+
+## Problem 2
+```{r}
+# Create a dataframe
+df <- tibble(
+  sample_norm = rnorm(10),
+  positive= sample_norm > 0,
+  char_vec = sample(letters, 10),
+  fac_vec = factor(sample(c("low","med","high"), 10, replace = TRUE),
+                    levels = c("low","med","high"))
+)
+
+df
+```
+
+```{r}
+# Try taking means
+mean(df %>% pull(sample_norm))
+mean(df %>% pull(positive))
+#mean(df %>% pull(char_vec))
+#mean(df %>% pull(fac_vec))
+```
+Taking the mean of 'sample_norm' works because it is numeric data.
+Taking the mean of 'positive' works because it is logical, TRUE=1, FALSE=0.
+Taking the mean of 'char_vec' doesn't work because charaters cannot be averaged.
+Taking the mean of 'fac_vec' doesn't work because factors cannot be averaged.
+
+```{r}
+# Convert variables type
+as.numeric(df$positive)
+as.numeric(df$char_vec)
+as.numeric(df$fac_vec)
+```
+For logical variables, when they are converted to numeric, TRUE becomes 1 and FALSE becomes 0, so mean(positive) returns the proportion of TRUE.
+For character variables, when they are converted to numeric, they yield NA since letters aren’t numbers, so mean fails.
+For factor variables, when they are converted to numeric, they return the internal integer codes of levels 1, 2, 3. The mean of those codes is not a meaningful statistic unless the levels are truly ordered and intentionally mapped to numeric scores.
