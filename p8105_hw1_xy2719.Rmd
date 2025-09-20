@@ -6,7 +6,7 @@ output: github_document
 ---
 
 ## Problem 1
-```{r}
+```{r echo=TRUE}
 # Load the tidyverse and moderndive library
 library(tidyverse)
 library(moderndive)
@@ -16,5 +16,23 @@ data("early_january_weather")
 
 # View the dataset
 view(early_january_weather)
+```
+
+```{r echo=TRUE}
+# Accessing the dataset help file
+?early_january_weather
+
+# Get the size of the dataset and the mean of temperature
+nrow(early_january_weather)
+ncol(early_january_weather)
+round(mean(early_january_weather$temp), 1)
+```
+The 'early_january_weather' dataset contains hourly meteorological data for LGA, JFK and EWR for the month of January 2013. This subset data frame contains hourly weather data of EWR.
+This dataset includes `r nrow(early_january_weather)` rows, `r ncol(early_january_weather)` columns, and 15 variables. The important variables are 'origin', 'year', 'month', 'day', 'hour', 'temp', 'demp', 'humid', 'wind_dir', wind_speed', wind_gust', 'precip', 'pressure', 'visib', and 'time_hour'.
+The mean temperature during this period was **`r round(mean(early_january_weather$temp, na.rm = TRUE), 1)` °F**.
+
+```{r echo=TRUE}
+# Create a scatterplot of temp (y) vs time_hour (x)
+
 ```
 
